@@ -7,8 +7,9 @@ use InvalidArgumentException;
 use League\OAuth1\Client\Server\Server;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
+use Vinelab\Socialite\OAuth\AbstractProvider as BaseProvider;
 
-abstract class AbstractProvider
+abstract class AbstractProvider extends BaseProvider
 {
     /**
      * The HTTP request instance.
@@ -54,7 +55,7 @@ abstract class AbstractProvider
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Laravel\Socialite\One\User
+     * @return \Vinelab\Socialite\One\User
      */
     public function user()
     {

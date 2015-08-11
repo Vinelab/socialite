@@ -6,9 +6,10 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Vinelab\Socialite\OAuth\AbstractProvider as BaseProvider;
 use Vinelab\Socialite\Contracts\Provider as ProviderContract;
 
-abstract class AbstractProvider
+abstract class AbstractProvider extends BaseProvider
 {
     /**
      * The HTTP request instance.
@@ -63,16 +64,6 @@ abstract class AbstractProvider
     protected function buildAuthUrlFromBase($url, $state)
     {
         return $url.'?'.http_build_query($this->getCodeFields($state), '', '&', $this->encodingType);
-    }
-
-    /**
-     * Get a fresh instance of the Guzzle HTTP client.
-     *
-     * @return \GuzzleHttp\Client
-     */
-    protected function getHttpClient()
-    {
-        return new \GuzzleHttp\Client;
     }
 
     /**
