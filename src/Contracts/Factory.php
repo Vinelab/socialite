@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Contracts;
+namespace Vinelab\Socialite\Contracts;
 
 interface Factory
 {
@@ -8,7 +8,7 @@ interface Factory
      * Get an OAuth provider implementation.
      *
      * @param  string  $driver
-     * @return \Laravel\Socialite\Contracts\Provider
+     * @return \Vinelab\Socialite\Contracts\Provider
      */
     public function driver($driver = null);
 }

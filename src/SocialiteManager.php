@@ -1,11 +1,16 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Vinelab\Socialite;
 
 use InvalidArgumentException;
 use Illuminate\Support\Manager;
-use Laravel\Socialite\One\TwitterProvider;
-use Laravel\Socialite\One\BitbucketProvider;
+use Vinelab\Socialite\Providers\GoogleProvider;
+use Vinelab\Socialite\Providers\GithubProvider;
+use Vinelab\Socialite\Providers\TwitterProvider;
+use Vinelab\Socialite\Providers\LinkedInProvider;
+use Vinelab\Socialite\Providers\FacebookProvider;
+use Vinelab\Socialite\Providers\BitbucketProvider;
+use Vinelab\Socialite\Providers\InstagramProvider;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
 use League\OAuth1\Client\Server\Bitbucket as BitbucketServer;
 
@@ -25,56 +30,70 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
+     */
+    protected function createInstagramDriver()
+    {
+        $config = $this->app['config']['services.instagram'];
+
+        return $this->buildProvider(
+            InstagramProvider::class, $config
+        );
+    }
+
+    /**
+     * Create an instance of the specified driver.
+     *
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
      */
     protected function createGithubDriver()
     {
         $config = $this->app['config']['services.github'];
 
         return $this->buildProvider(
-            'Laravel\Socialite\Two\GithubProvider', $config
+            GithubProvider::class, $config
         );
     }
 
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
      */
     protected function createFacebookDriver()
     {
         $config = $this->app['config']['services.facebook'];
 
         return $this->buildProvider(
-            'Laravel\Socialite\Two\FacebookProvider', $config
+            FacebookProvider::class, $config
         );
     }
 
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
      */
     protected function createGoogleDriver()
     {
         $config = $this->app['config']['services.google'];
 
         return $this->buildProvider(
-            'Laravel\Socialite\Two\GoogleProvider', $config
+            GoogleProvider::class, $config
         );
     }
 
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
      */
     protected function createLinkedinDriver()
     {
         $config = $this->app['config']['services.linkedin'];
 
         return $this->buildProvider(
-          'Laravel\Socialite\Two\LinkedInProvider', $config
+          LinkedInProvider::class, $config
         );
     }
 
@@ -83,7 +102,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
      *
      * @param  string  $provider
      * @param  array  $config
-     * @return \Laravel\Socialite\Two\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth2\AbstractProvider
      */
     public function buildProvider($provider, $config)
     {
@@ -96,21 +115,22 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\One\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth1\AbstractProvider
      */
     protected function createTwitterDriver()
     {
         $config = $this->app['config']['services.twitter'];
 
         return new TwitterProvider(
-            $this->app['request'], new TwitterServer($this->formatConfig($config))
+            $this->app['request'], new TwitterServer($this->formatConfig($config)),
+            $config['client_id'], $config['client_secret']
         );
     }
 
     /**
      * Create an instance of the specified driver.
      *
-     * @return \Laravel\Socialite\One\AbstractProvider
+     * @return \Vinelab\Socialite\OAuth\OAuth1\AbstractProvider
      */
     protected function createBitbucketDriver()
     {

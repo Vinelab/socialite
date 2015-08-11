@@ -1,8 +1,11 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\Providers;
 
-class LinkedInProvider extends AbstractProvider implements ProviderInterface
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
+use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
+
+class LinkedInProvider extends AbstractUserProvider implements UserAuthProviderInterface
 {
     /**
      * The scopes being requested.

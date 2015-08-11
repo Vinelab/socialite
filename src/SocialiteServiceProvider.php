@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Vinelab\Socialite;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +20,7 @@ class SocialiteServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('Laravel\Socialite\Contracts\Factory', function ($app) {
+        $this->app->bindShared('Vinelab\Socialite\Contracts\Factory', function ($app) {
             return new SocialiteManager($app);
         });
     }
@@ -32,6 +32,6 @@ class SocialiteServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['Laravel\Socialite\Contracts\Factory'];
+        return ['Vinelab\Socialite\Contracts\Factory'];
     }
 }

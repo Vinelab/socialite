@@ -1,10 +1,11 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Http\Request;
-use Laravel\Socialite\One\AbstractProvider;
+use Mockery as m;
+use Vinelab\Socialite\OAuth\OAuth1\User;
+use Vinelab\Socialite\OAuth\OAuth1\AbstractProvider;
 
-class OAuthOneTest extends PHPUnit_Framework_TestCase
+class OAuth1Test extends PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
@@ -46,7 +47,7 @@ class OAuthOneTest extends PHPUnit_Framework_TestCase
         $provider = new OAuthOneTestProviderStub($request, $server);
         $user = $provider->user();
 
-        $this->assertInstanceOf('Laravel\Socialite\One\User', $user);
+        $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('uid', $user->id);
         $this->assertEquals('foo@bar.com', $user->email);
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Vinelab\Socialite\OAuth\OAuth1;
 
-use Laravel\Socialite\AbstractUser;
+use Vinelab\Socialite\AbstractUser;
 
 class User extends AbstractUser
 {

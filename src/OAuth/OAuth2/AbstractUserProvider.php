@@ -1,36 +1,15 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\OAuth\OAuth2;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use GuzzleHttp\ClientInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Laravel\Socialite\Contracts\Provider as ProviderContract;
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
 
-abstract class AbstractProvider implements ProviderContract
+abstract class AbstractUserProvider extends AbstractProvider implements UserAuthProviderInterface
 {
-    /**
-     * The HTTP request instance.
-     *
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * The client ID.
-     *
-     * @var string
-     */
-    protected $clientId;
-
-    /**
-     * The client secret.
-     *
-     * @var string
-     */
-    protected $clientSecret;
-
     /**
      * The redirect URL.
      *
@@ -51,13 +30,6 @@ abstract class AbstractProvider implements ProviderContract
      * @var string
      */
     protected $scopeSeparator = ',';
-
-    /**
-     * The type of the encoding in the query.
-     *
-     * @var int Can be either PHP_QUERY_RFC3986 or PHP_QUERY_RFC1738.
-     */
-    protected $encodingType = PHP_QUERY_RFC1738;
 
     /**
      * Indicates if the session state should be utilized.
@@ -110,7 +82,7 @@ abstract class AbstractProvider implements ProviderContract
      * Map the raw user array to a Socialite User instance.
      *
      * @param  array  $user
-     * @return \Laravel\Socialite\User
+     * @return \Vinelab\Socialite\User
      */
     abstract protected function mapUserToObject(array $user);
 
@@ -128,18 +100,6 @@ abstract class AbstractProvider implements ProviderContract
         }
 
         return new RedirectResponse($this->getAuthUrl($state));
-    }
-
-    /**
-     * Get the authentication URL for the provider.
-     *
-     * @param  string  $url
-     * @param  string  $state
-     * @return string
-     */
-    protected function buildAuthUrlFromBase($url, $state)
-    {
-        return $url.'?'.http_build_query($this->getCodeFields($state), '', '&', $this->encodingType);
     }
 
     /**
@@ -269,29 +229,6 @@ abstract class AbstractProvider implements ProviderContract
     public function scopes(array $scopes)
     {
         $this->scopes = $scopes;
-
-        return $this;
-    }
-
-    /**
-     * Get a fresh instance of the Guzzle HTTP client.
-     *
-     * @return \GuzzleHttp\Client
-     */
-    protected function getHttpClient()
-    {
-        return new \GuzzleHttp\Client;
-    }
-
-    /**
-     * Set the request instance.
-     *
-     * @param  Request  $request
-     * @return $this
-     */
-    public function setRequest(Request $request)
-    {
-        $this->request = $request;
 
         return $this;
     }

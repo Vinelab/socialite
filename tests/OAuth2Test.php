@@ -1,11 +1,11 @@
 <?php
 
-use Mockery as m;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Two\User;
-use Laravel\Socialite\Two\AbstractProvider;
+use Mockery as m;
+use Vinelab\Socialite\OAuth\OAuth2\User;
+use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
 
-class OAuthTwoTest extends PHPUnit_Framework_TestCase
+class OAuth2Test extends PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
@@ -37,12 +37,12 @@ class OAuthTwoTest extends PHPUnit_Framework_TestCase
         $response->shouldReceive('getBody')->once()->andReturn('access_token=access_token');
         $user = $provider->user();
 
-        $this->assertInstanceOf('Laravel\Socialite\Two\User', $user);
+        $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('foo', $user->id);
     }
 
     /**
-     * @expectedException Laravel\Socialite\Two\InvalidStateException
+     * @expectedException Vinelab\Socialite\OAuth\OAuth2\InvalidStateException
      */
     public function testExceptionIsThrownIfStateIsInvalid()
     {
@@ -54,7 +54,7 @@ class OAuthTwoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Laravel\Socialite\Two\InvalidStateException
+     * @expectedException Vinelab\Socialite\OAuth\OAuth2\InvalidStateException
      */
     public function testExceptionIsThrownIfStateIsNotSet()
     {
@@ -66,7 +66,7 @@ class OAuthTwoTest extends PHPUnit_Framework_TestCase
     }
 }
 
-class OAuthTwoTestProviderStub extends AbstractProvider
+class OAuthTwoTestProviderStub extends AbstractUserProvider
 {
     public $http;
 

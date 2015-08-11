@@ -1,10 +1,12 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\Providers;
 
 use GuzzleHttp\ClientInterface;
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
+use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
 
-class GoogleProvider extends AbstractProvider implements ProviderInterface
+class GoogleProvider extends AbstractUserProvider implements UserAuthProviderInterface
 {
     /**
      * The separating character for the requested scopes.
