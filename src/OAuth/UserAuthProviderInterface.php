@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\OAuth;
 
-interface ProviderInterface
+interface UserAuthProviderInterface
 {
     /**
      * Redirect the user to the authentication page for the provider.

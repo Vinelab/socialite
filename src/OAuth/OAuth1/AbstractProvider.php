@@ -1,14 +1,14 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Vinelab\Socialite\OAuth\OAuth1;
 
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use League\OAuth1\Client\Server\Server;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Laravel\Socialite\Contracts\Provider as ProviderContract;
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
 
-abstract class AbstractProvider implements ProviderContract
+abstract class AbstractProvider
 {
     /**
      * The HTTP request instance.

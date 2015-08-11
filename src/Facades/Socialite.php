@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Facades;
+namespace Vinelab\Socialite\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

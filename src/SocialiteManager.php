@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Vinelab\Socialite;
 
 use InvalidArgumentException;
 use Illuminate\Support\Manager;
-use Laravel\Socialite\One\TwitterProvider;
-use Laravel\Socialite\One\BitbucketProvider;
+use Vinelab\Socialite\One\TwitterProvider;
+use Vinelab\Socialite\One\BitbucketProvider;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
 use League\OAuth1\Client\Server\Bitbucket as BitbucketServer;
 

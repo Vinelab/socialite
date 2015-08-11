@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite\Contracts;
+namespace Vinelab\Socialite\Contracts;
 
 interface Factory
 {

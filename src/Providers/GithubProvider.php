@@ -1,10 +1,12 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\Providers;
 
 use Exception;
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
+use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
 
-class GithubProvider extends AbstractProvider implements ProviderInterface
+class GithubProvider extends AbstractUserProvider implements UserAuthProviderInterface
 {
     /**
      * The scopes being requested.

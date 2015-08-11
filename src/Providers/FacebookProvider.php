@@ -1,8 +1,11 @@
 <?php
 
-namespace Laravel\Socialite\Two;
+namespace Vinelab\Socialite\Providers;
 
-class FacebookProvider extends AbstractProvider implements ProviderInterface
+use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
+use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
+
+class FacebookProvider extends AbstractUserProvider implements UserAuthProviderInterface
 {
     /**
      * The base Facebook Graph URL.

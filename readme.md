@@ -1,4 +1,16 @@
 # Laravel Socialite
+> A modified version of Laravel's official Socialite package.
+
+### Modifications
+- Base namespace changed to `Vinelab\Socialite`
+- Re-structured directory and providers
+- Added App-only functionality to the following services:
+    - Facebook
+    - Instagram
+    - Twitter
+
+> App-only functionality enables server-side communication with the service without
+having to authenticate/redirect users.
 
 ## Introduction
 

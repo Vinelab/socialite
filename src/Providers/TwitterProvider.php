@@ -1,8 +1,10 @@
 <?php
 
-namespace Laravel\Socialite\One;
+namespace Vinelab\Socialite\Providers;
 
 use InvalidArgumentException;
+use Vinelab\Socialite\OAuth\OAuth1\User;
+use Vinelab\Socialite\OAuth\OAuth1\AbstractProvider;
 
 class TwitterProvider extends AbstractProvider
 {

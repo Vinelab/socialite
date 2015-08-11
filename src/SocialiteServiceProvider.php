@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Socialite;
+namespace Vinelab\Socialite;
 
 use Illuminate\Support\ServiceProvider;
 
