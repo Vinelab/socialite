@@ -2,11 +2,15 @@
 
 namespace Vinelab\Socialite\Providers;
 
+use Vinelab\Socialite\OAuth\AppAuthProviderTrait;
+use Vinelab\Socialite\OAuth\AppAuthProviderInterface;
 use Vinelab\Socialite\OAuth\UserAuthProviderInterface;
 use Vinelab\Socialite\OAuth\OAuth2\AbstractUserProvider;
 
-class FacebookProvider extends AbstractUserProvider implements UserAuthProviderInterface
+class FacebookProvider extends AbstractUserProvider implements UserAuthProviderInterface, AppAuthProviderInterface
 {
+    use AppAuthProviderTrait;
+
     /**
      * The base Facebook Graph URL.
      *
@@ -41,6 +45,34 @@ class FacebookProvider extends AbstractUserProvider implements UserAuthProviderI
      * @var bool
      */
     protected $popup = false;
+
+    /**
+     * Set the API version to be used.
+     *
+     * @param string
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getPostFields()
+    {
+        return ['access_token' => $this->clientId.'|'.$this->clientSecret];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getPostUrl($id)
+    {
+        return $this->graphUrl.'/'.$this->version.'/'.$id;
+    }
 
     /**
      * {@inheritdoc}
