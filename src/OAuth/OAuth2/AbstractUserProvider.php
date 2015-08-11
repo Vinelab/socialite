@@ -82,7 +82,7 @@ abstract class AbstractUserProvider extends AbstractProvider implements UserAuth
      * Map the raw user array to a Socialite User instance.
      *
      * @param  array  $user
-     * @return \Laravel\Socialite\User
+     * @return \Vinelab\Socialite\User
      */
     abstract protected function mapUserToObject(array $user);
 

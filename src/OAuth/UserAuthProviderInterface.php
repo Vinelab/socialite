@@ -14,7 +14,7 @@ interface UserAuthProviderInterface
     /**
      * Get the User instance for the authenticated user.
      *
-     * @return \Laravel\Socialite\Two\User
+     * @return \Vinelab\Socialite\Two\User
      */
     public function user();
 }

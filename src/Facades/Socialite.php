@@ -5,7 +5,7 @@ namespace Vinelab\Socialite\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Laravel\Socialite\SocialiteManager
+ * @see \Vinelab\Socialite\SocialiteManager
  */
 class Socialite extends Facade
 {
@@ -16,6 +16,6 @@ class Socialite extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Laravel\Socialite\Contracts\Factory';
+        return 'Vinelab\Socialite\Contracts\Factory';
     }
 }
