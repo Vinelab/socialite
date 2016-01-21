@@ -61,9 +61,9 @@ class FacebookProvider extends AbstractUserProvider implements UserAuthProviderI
     /**
      * {@inheritdoc}
      */
-    protected function getPostFields()
+    protected function getPostFields($fields = [])
     {
-        return ['access_token' => $this->clientId.'|'.$this->clientSecret];
+        return ['access_token' => $this->clientId.'|'.$this->clientSecret, 'fields' => implode(',', $fields)];
     }
 
     /**

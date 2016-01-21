@@ -11,5 +11,5 @@ interface AppAuthProviderInterface
      *
      * @return array
      */
-    public function post($id);
+    public function post($id, $fields = []);
 }

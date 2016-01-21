@@ -78,7 +78,7 @@ class TwitterProvider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected function getPostUrl($id)
+    protected function getPostUrl($id, $fields = [])
     {
         return $this->apiUrl.'/'.$this->version.'/statuses/show/'.$id.'.json';
     }

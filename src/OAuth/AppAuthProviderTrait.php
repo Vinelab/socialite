@@ -11,11 +11,11 @@ trait AppAuthProviderTrait
      *
      * @return array
      */
-    public function post($id)
+    public function post($id, $fields = [])
     {
         try {
             $response = $this->getHttpClient()->get($this->getPostUrl($id), [
-                'query' => $this->getPostFields()
+                'query' => $this->getPostFields($fields)
             ]);
 
             return json_decode($response->getBody(), true);
