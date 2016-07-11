@@ -29,7 +29,7 @@ class InstagramProvider extends AbstractProvider implements AppAuthProviderInter
      */
     protected function getPostUrl($url, $fields = [])
     {
-        return $this->apiUrl.'/'.$this->version.'/oembed?url='.$url;
+        return $this->apiUrl.'/oembed?url='.$url;
     }
 
     /**
