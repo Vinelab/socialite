@@ -27,9 +27,9 @@ class InstagramProvider extends AbstractProvider implements AppAuthProviderInter
     /**
      * {@inheritdoc}
      */
-    protected function getPostUrl($shortcode, $fields = [])
+    protected function getPostUrl($url, $fields = [])
     {
-        return $this->apiUrl.'/'.$this->version.'/media/shortcode/'.$shortcode;
+        return $this->apiUrl.'/'.$this->version.'/oembed?url='.$url;
     }
 
     /**
@@ -37,6 +37,6 @@ class InstagramProvider extends AbstractProvider implements AppAuthProviderInter
      */
     protected function getPostFields()
     {
-        return ['client_id' => $this->clientId];
+        return [];
     }
 }
